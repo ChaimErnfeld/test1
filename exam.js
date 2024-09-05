@@ -202,3 +202,77 @@ let militaryUnit = {
     estimatedEndDate: "2024-12-31",
   },
 };
+
+function Mission1(unit) {
+  let command = unit.commandStructure.chiefOfStaff;
+  return `${command.rank} ${command.name}, ${command.contact.phone}`;
+}
+
+function Mission2(unit) {
+  let soldiers = unit.personnel;
+  let sumOfSoldiers = 0;
+  for (const soldier in soldiers) {
+    sumOfSoldiers += 1;
+  }
+  return String(sumOfSoldiers);
+}
+
+function Mission3(NewDeployment, unit) {
+  let newItemToHistory = {
+    eventDate: unit.currentDeployment.estimatedEndDate,
+    eventDescription:
+      unit.currentDeployment.mission + "in" + unit.currentDeployment.location,
+  };
+  unit.history.push(newItemToHistory);
+  unit.currentDeployment.location = NewDeployment.location;
+  unit.currentDeployment.mission = NewDeployment.mission;
+  unit.currentDeployment.startDate = NewDeployment.startDate;
+  unit.currentDeployment.estimatedEndDate = NewDeployment.estimatedEndDate;
+  return unit;
+}
+
+function Mission4(FirearmObject, unit) {
+  let result = false;
+  for (const key in unit.equipment.firearms) {
+    if (FirearmObject.type == key.type && FirearmObject.status == key.status) {
+      result = true;
+    }
+  }
+  if (result == false) {
+    unit.equipment.firearms.push(FirearmObject);
+  } else {
+    unit.equipment.firearms.forEach((element) => {
+      if (
+        FirearmObject.type == element.type &&
+        FirearmObject.status == element.status
+      ) {
+        element.quantity += 1;
+      }
+    });
+  }
+  return unit;
+}
+console.log(
+  Mission5(
+    {
+      type: "M16 Rifle",
+
+      quantity: 500,
+
+      status: "Operational",
+    },
+    militaryUnit
+  ).equipment.firearms
+);
+
+function Mission5(unit) {
+  let sum = 0;
+  unit.trainingPrograms.forEach((element) => {
+    sum += element.duration;
+  });
+  return String(sum);
+}
+
+module.exports = {
+  Mission1,
+};
