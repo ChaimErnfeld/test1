@@ -252,18 +252,6 @@ function Mission4(FirearmObject, unit) {
   }
   return unit;
 }
-console.log(
-  Mission5(
-    {
-      type: "M16 Rifle",
-
-      quantity: 500,
-
-      status: "Operational",
-    },
-    militaryUnit
-  ).equipment.firearms
-);
 
 function Mission5(unit) {
   let sum = 0;
