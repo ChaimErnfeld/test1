@@ -275,4 +275,8 @@ function Mission5(unit) {
 
 module.exports = {
   Mission1,
+  Mission2,
+  Mission3,
+  Mission4,
+  Mission5,
 };
